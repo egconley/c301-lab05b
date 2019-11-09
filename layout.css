@@ -1,23 +1,30 @@
 /* Questions:
 Is there a way to do * {text-align: center;} without messing up e,f,g, and h? */
 
-/* comment for pull request */
+/* Comments from Josh:
+How are we implementing it?
+Use Flexbox or CSS grids for styling this application.
+Use relative units so the elements scale proportionally when the viewport dimensions change.
+Use at least two breakpoints and change the background colors of each box. There should be three possible views: desktop, tablet, and mobile device. You may choose the exact pixel values for each breakpoint.
+*/
+
 * {
   box-sizing: border-box;
 }
 
 body {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: /* a */ 75fr /* b */ 150fr /* c */ 125fr /* d */ 125fr /* e, f */ 250fr /* g, h */ 250fr /* i */ 80fr;
+  height: 767px;
   margin: 0 auto;
   width: 480px;
-  height: 767px;
 }
 
 /* a */
 div:first-of-type {
-  width: 480px;
-  height: 75px;
-  line-height: 75px;
-  /* if the text has multiple lines, you need to add more than line-height: https://www.w3schools.com/css/css_align.asp */
+  grid-column: 1 / 3;
+  grid-row: 1 / 1;
   background-color: #ffa600;
   text-align: center;
   border: 1px solid black;
@@ -25,9 +32,8 @@ div:first-of-type {
 
 /* b */
 div:nth-of-type(2) {
-  width: 480px;
-  height: 150px;
-  line-height: 150px;
+  grid-column: 1 / 3;
+  grid-row: 2 / 2;
   background-color: #ffa600;
   text-align: center;
   border: 1px solid black;
@@ -35,62 +41,191 @@ div:nth-of-type(2) {
   border-bottom: 0px;
 }
 
-/* c, d */
-div:nth-of-type(3), div:nth-of-type(4) {
-  width: 480px;
-  height: 125px;
-  line-height: 125px;
+/* c */
+div:nth-of-type(3) {
+  grid-column: 1 / 3;
+  grid-row: 3 / 3;
   background-color: #ffa600;
   text-align: center;
   border: 1px solid black;
   border-bottom: 0px;
 }
 
-/* e, f  */
-div:nth-of-type(5)>div {
-  width: 240px;
-  height: 250px;
-  line-height: 250px;
+/* d */
+div:nth-of-type(4) {
+  grid-column: 1 / 3;
+  grid-row: 4 / 4;
   background-color: #ffa600;
-  display: inline-block;
   text-align: center;
   border: 1px solid black;
   border-bottom: 0px;
 }
 
-div:nth-of-type(5)>div:first-child {
-  border-right: 0px;
-}
-
-/* g, h */
-div:nth-of-type(6)>div {
-  width: 240px;
-  height: 250px;
-  line-height: 250px;
+/* e */
+div:nth-of-type(5) {
+  grid-column: 1 / 2;
+  grid-row: 5 / 5;
   background-color: #ffa600;
-  display: inline-block;
   text-align: center;
   border: 1px solid black;
   border-bottom: 0px;
 }
 
-div:nth-of-type(6)>div:first-child {
-  border-right: 0px;
+/* f */
+div:nth-of-type(6) {
+  grid-column: 2 / 3;
+  grid-row: 5 / 5;
+  background-color: #ffa600;
+  text-align: center;
+  border: 1px solid black;
+  border-left: 0px;
+  border-bottom: 0px;
+}
+
+/* g */
+div:nth-of-type(7) {
+  grid-column: 1 / 2;
+  grid-row: 6 / 6;
+  background-color: #ffa600;
+  text-align: center;
+  border: 1px solid black;
+  border-bottom: 0px;
+}
+
+/* h */
+div:nth-of-type(8) {
+  grid-column: 2 / 3;
+  grid-row: 6 / 6;
+  background-color: #ffa600;
+  text-align: center;
+  border: 1px solid black;
+  border-bottom: 0px;
+  border-left: 0px;
 }
 
 /* i */
-div:nth-of-type(7) {
-  width: 480px;
-  height: 80px;
-  line-height: 80px;
+div:nth-of-type(9) {
+  grid-column: 1 / span 2;
+  grid-row: 7 / 7;
   background-color: #ffa600;
   text-align: center;
   border: 1px solid black;
+  border-bottom: 0px;
 }
 
+/* Tablet View */
 @media only screen and (min-width: 768px) {
   body {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: /* a */ 75fr /* b */ 150fr /* c, d */ 125fr /* e, f, g, h */ 250fr /* i */ 80fr;
+    height: 767px;
+    margin: 0 auto;
+    width: 768px;
+  }
+  
+  /* a */
+  div:first-of-type {
+    grid-column: 1 / span 4;
+    grid-row: 1 / 1;
+    background-color: yellowgreen;
+    text-align: center;
+    border: 1px solid black;
+  }
+  
+  /* b */
+  div:nth-of-type(2) {
+    grid-column: 1 / span 4;
+    grid-row: 2 / 2;
+    background-color: yellowgreen;
+    text-align: center;
+    border: 1px solid black;
+    border-top: 0px;
+    border-bottom: 0px;
+  }
+  
+  /* c */
+  div:nth-of-type(3) {
+    grid-column: 1 / span 2;
+    grid-row: 3 / 3;
+    background-color: yellowgreen;
+    text-align: center;
+    border: 1px solid black;
+    border-bottom: 0px;
+  }
+  
+  /* d */
+  div:nth-of-type(4) {
+    grid-column: 3 / span 2;
+    grid-row: 3 / 3;
+    background-color: yellowgreen;
+    text-align: center;
+    border: 1px solid black;
+    border-bottom: 0px;
+    border-left: 0px;
+  }
+  
+  /* e */
+  div:nth-of-type(5) {
+    grid-column: 1 / 2;
+    grid-row: 4 / 4;
+    background-color: yellowgreen;
+    text-align: center;
+    border: 1px solid black;
+    border-bottom: 0px;
+  }
+  
+  /* f */
+  div:nth-of-type(6) {
+    grid-column: 2 / 3;
+    grid-row: 4 / 4;
+    background-color: yellowgreen;
+    text-align: center;
+    border: 1px solid black;
+    border-left: 0px;
+    border-bottom: 0px;
+  }
+  
+  /* g */
+  div:nth-of-type(7) {
+    grid-column: 3 / 4;
+    grid-row: 4 / 4;
+    background-color: yellowgreen;
+    text-align: center;
+    border: 1px solid black;
+    border-bottom: 0px;
+    border-left: 0px;
+  }
+  
+  /* h */
+  div:nth-of-type(8) {
+    grid-column: 4 / 5;
+    grid-row: 4 / 4;
+    background-color: yellowgreen;
+    text-align: center;
+    border: 1px solid black;
+    border-bottom: 0px;
+    border-left: 0px;
+  }
+  
+  /* i */
+  div:nth-of-type(9) {
+    grid-column: 1 / span 4;
+    grid-row: 5 / 5;
+    background-color: yellowgreen;
+    text-align: center;
+    border: 1px solid black;
+    border-bottom: 0px;
+  }
+}
+
+/* Desktop View */
+@media only screen and (min-width: 900px) {
+  body {
     /* background-color: blue; */
+    display: grid;
+    grid-template-columns: 200fr 190fr 190fr 190fr 190fr;
+    grid-template-rows: /* a */ 100fr /* c, d */ 200fr /* e, f, g, h */ 250fr /* i */ 150fr;
     margin: 0 auto;
     width: 960px;
     height: 768px;
@@ -98,10 +233,7 @@ div:nth-of-type(7) {
 
   /* a */
   div:first-of-type {
-    width: 960px;
-    height: 100px;
-    line-height: 100px;
-    /* if the text has multiple lines, you need to add more than line-height: https://www.w3schools.com/css/css_align.asp */
+    grid-column: 1 / span 5;
     background-color: magenta;
     text-align: center;
     border: 1px solid black;
@@ -109,71 +241,88 @@ div:nth-of-type(7) {
 
   /* b */
   div:nth-of-type(2) {
-    width: 200px;
-    height: 600px;
-    line-height: 600px;
+    grid-column: 1 / 2;
+    grid-row: 2 / span 3;
     background-color: magenta;
     text-align: center;
+    display: inline-block;
     border: 1px solid black;
     border-top: 0px;
     border-right: 0px;
-    float: left;
   }
 
-  /* c, d */
-  div:nth-of-type(3), div:nth-of-type(4) {
-    width: 380px;
-    height: 200px;
-    line-height: 200px;
+  /* c */
+  div:nth-of-type(3) {
     background-color: magenta;
+    grid-column: 2 / 4;
+    grid-row: 2 / 2;
     text-align: center;
     border: 1px solid black;
-    border-bottom: 0px;
     border-top: 0px;
-    float: left;
   }
 
-  /* e, f  */
-  div:nth-of-type(5)>div {
-    width: 190px;
-    height: 250px;
-    line-height: 250px;
+  /* d */
+  div:nth-of-type(4) {
     background-color: magenta;
-    display: inline-block;
+    grid-column: 4 / 6;
+    grid-row: 2 / 2;
     text-align: center;
     border: 1px solid black;
-    border-bottom: 0px;
-    float: left;
-  }
-
-  /* g, h */
-  div:nth-of-type(6)>div {
-    width: 190px;
-    height: 250px;
-    line-height: 250px;
-    background-color: magenta;
-    display: inline-block;
-    text-align: center;
-    border: 1px solid black;
-    border-bottom: 0px;
+    border-top: 0px;
     border-left: 0px;
   }
 
-  div:nth-of-type(6)>div:first-child {
-    border-right: 1px solid black;
+  /* e */
+  div:nth-of-type(5) {
+    background-color: magenta;
+    grid-column: 2 / 3;
+    grid-row: 3 / 3;
+    text-align: center;
+    border: 1px solid black;
+    border-top: 0px;
+  }
+
+  /* f */
+  div:nth-of-type(6) {
+    background-color: magenta;
+    grid-column: 3 / 4;
+    grid-row: 3 / 3;
+    text-align: center;
+    border: 1px solid black;
+    border-left: 0px;
+    border-top: 0px;
+  }
+
+  /* g */
+  div:nth-of-type(7) {
+    background-color: magenta;
+    grid-column: 4 / 5;
+    grid-row: 3 / 3;
+    text-align: center;
+    border: 1px solid black;
+    border-left: 0px;
+    border-top: 0px;
+  }
+
+  /* h */
+  div:nth-of-type(8) {
+    background-color: magenta;
+    grid-column: 5 / 6;
+    grid-row: 3 / 3;
+    text-align: center;
+    border: 1px solid black;
+    border-left: 0px;
+    border-top: 0px;
   }
 
   /* i */
-  div:nth-of-type(7) {
-    width: 760px;
-    height: 150px;
-    line-height: 150px;
+  div:nth-of-type(9) {
     background-color: magenta;
+    grid-column: 2 / span 4;
+    grid-row: 4 / 4;
     text-align: center;
     border: 1px solid black;
-    float: left;
-  }  
-  div:nth-of-type(4) {
-    border-left: 0px;
+    border-top: 0px;
   }
+
 }
