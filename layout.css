@@ -1,0 +1,179 @@
+/* Questions:
+Is there a way to do * {text-align: center;} without messing up e,f,g, and h? */
+
+/* comment for pull request */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  width: 480px;
+  height: 767px;
+}
+
+/* a */
+div:first-of-type {
+  width: 480px;
+  height: 75px;
+  line-height: 75px;
+  /* if the text has multiple lines, you need to add more than line-height: https://www.w3schools.com/css/css_align.asp */
+  background-color: #ffa600;
+  text-align: center;
+  border: 1px solid black;
+}
+
+/* b */
+div:nth-of-type(2) {
+  width: 480px;
+  height: 150px;
+  line-height: 150px;
+  background-color: #ffa600;
+  text-align: center;
+  border: 1px solid black;
+  border-top: 0px;
+  border-bottom: 0px;
+}
+
+/* c, d */
+div:nth-of-type(3), div:nth-of-type(4) {
+  width: 480px;
+  height: 125px;
+  line-height: 125px;
+  background-color: #ffa600;
+  text-align: center;
+  border: 1px solid black;
+  border-bottom: 0px;
+}
+
+/* e, f  */
+div:nth-of-type(5)>div {
+  width: 240px;
+  height: 250px;
+  line-height: 250px;
+  background-color: #ffa600;
+  display: inline-block;
+  text-align: center;
+  border: 1px solid black;
+  border-bottom: 0px;
+}
+
+div:nth-of-type(5)>div:first-child {
+  border-right: 0px;
+}
+
+/* g, h */
+div:nth-of-type(6)>div {
+  width: 240px;
+  height: 250px;
+  line-height: 250px;
+  background-color: #ffa600;
+  display: inline-block;
+  text-align: center;
+  border: 1px solid black;
+  border-bottom: 0px;
+}
+
+div:nth-of-type(6)>div:first-child {
+  border-right: 0px;
+}
+
+/* i */
+div:nth-of-type(7) {
+  width: 480px;
+  height: 80px;
+  line-height: 80px;
+  background-color: #ffa600;
+  text-align: center;
+  border: 1px solid black;
+}
+
+@media only screen and (min-width: 768px) {
+  body {
+    /* background-color: blue; */
+    margin: 0 auto;
+    width: 960px;
+    height: 768px;
+  }
+
+  /* a */
+  div:first-of-type {
+    width: 960px;
+    height: 100px;
+    line-height: 100px;
+    /* if the text has multiple lines, you need to add more than line-height: https://www.w3schools.com/css/css_align.asp */
+    background-color: magenta;
+    text-align: center;
+    border: 1px solid black;
+  }
+
+  /* b */
+  div:nth-of-type(2) {
+    width: 200px;
+    height: 600px;
+    line-height: 600px;
+    background-color: magenta;
+    text-align: center;
+    border: 1px solid black;
+    border-top: 0px;
+    border-right: 0px;
+    float: left;
+  }
+
+  /* c, d */
+  div:nth-of-type(3), div:nth-of-type(4) {
+    width: 380px;
+    height: 200px;
+    line-height: 200px;
+    background-color: magenta;
+    text-align: center;
+    border: 1px solid black;
+    border-bottom: 0px;
+    border-top: 0px;
+    float: left;
+  }
+
+  /* e, f  */
+  div:nth-of-type(5)>div {
+    width: 190px;
+    height: 250px;
+    line-height: 250px;
+    background-color: magenta;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid black;
+    border-bottom: 0px;
+    float: left;
+  }
+
+  /* g, h */
+  div:nth-of-type(6)>div {
+    width: 190px;
+    height: 250px;
+    line-height: 250px;
+    background-color: magenta;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid black;
+    border-bottom: 0px;
+    border-left: 0px;
+  }
+
+  div:nth-of-type(6)>div:first-child {
+    border-right: 1px solid black;
+  }
+
+  /* i */
+  div:nth-of-type(7) {
+    width: 760px;
+    height: 150px;
+    line-height: 150px;
+    background-color: magenta;
+    text-align: center;
+    border: 1px solid black;
+    float: left;
+  }  
+  div:nth-of-type(4) {
+    border-left: 0px;
+  }
+}
